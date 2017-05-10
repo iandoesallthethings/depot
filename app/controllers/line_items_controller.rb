@@ -32,7 +32,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart, notice: "#{product.title} added to cart." }
+        format.html { redirect_to store_index_url, notice: "#{product.title} added to cart." }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
@@ -58,9 +58,19 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    @line_item.destroy
+    current_cart = @line_item.cart
+
+    #binding.pry
+    if @line_item.quantity > 1
+      @line_item.quantity -= 1
+      @line_item.save!
+    else
+      @line_item.destroy
+    end
+    # New feature: destroy cart if empty
+
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to current_cart, notice: "Item removed from cart." }
       format.json { head :no_content }
     end
   end

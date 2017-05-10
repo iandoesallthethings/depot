@@ -1,10 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1> Product Catalog</h1>
-<p><%= @store_message %></p>
+<% if @store.show_cart? %>
+  <a href="<%= @store.cart_path %>">View Cart (<%= @store.count_items %>)</a>
+<% end %>
 
-<% cache @products do %>
-  <% @products.each do |product| %>
+<h1> Product Catalog</h1>
+<p><%= @store.message %></p>
+
+<% cache @store.products do %>
+  <% @store.products.each do |product| %>
     <%cache product do %>
       <div class="entry">
         <%= image_tag(product.image_url) %>

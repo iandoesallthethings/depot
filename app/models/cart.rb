@@ -1,5 +1,11 @@
 class Cart < ApplicationRecord
-  has_many :line_items, dependent: :destroy 
+  has_many :line_items, dependent: :destroy
+
+  def count_items
+    items = 0
+    line_items.each { |item| items += item.quantity }
+    items
+  end
 
   def add_product(product)
     current_item = line_items.find_by(product_id: product.id)
