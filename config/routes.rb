@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pages/contact'
+
   resources :line_items
   resources :carts
   root 'store#index', as: 'store_index'
