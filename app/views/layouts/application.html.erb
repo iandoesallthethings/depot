@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Umbrellaman Pedals</title>
-		<%= csrf_meta_tags %>
+  <head>
+    <title>Umbrellaman Pedals</title>
+    <%= csrf_meta_tags %>
 
-		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-	</head>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-	<body class='<%= controller.controller_name %>'>
+  <body class='<%= controller.controller_name %>'>
 
-		<div id="banner">
+    <div id="banner">
       <a href="/"><%= image_tag 'ump_logo.png', alt: 'Umbrellaman Pedals' %></a>
-			<span class="title"><%= @page_title %></span>
-		</div>
-		<div id="columns">
-			<div id="side">
-				<ul>
+      <span class="title"><%= @page_title %></span>
+    </div>
+    <div id="columns">
+      <div id="side">
+        <div id="cart">
+          <% if @cart %>
+            <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+              <%= render @cart %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <ul>
           <li><%= link_to "Home", "/" %>
-					<li><%= link_to "Contact", pages_contact_path %></li>
-				</ul>
-			</div>
-			<div id="main">
-				<%= yield %>
-			</div>
-		</div>
-	</body>
+          <li><%= link_to "Contact", pages_contact_path %></li>
+        </ul>
+      </div>
+      <div id="main">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
 </html>

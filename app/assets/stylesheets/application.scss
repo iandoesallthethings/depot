@@ -19,7 +19,7 @@ body, body > p, body > ol, body > ul, body > td {margin: 8px !important}
 #banner {
   position: relative;
   min-height: 48px;
-  background: #9bcccc;
+  background: lightblue;
   padding: 10px;
   border-bottom: 5px solid;
   font: small-caps 40px/40px "Times New Roman", serif;
@@ -38,7 +38,7 @@ body, body > p, body > ol, body > ul, body > td {margin: 8px !important}
   color: #000 !important;
   border: 2px solid red;
   padding: 1em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   background-color: #f0f0f0;
   font: bold smaller sans-serif;
 }
@@ -48,7 +48,7 @@ body, body > p, body > ol, body > ul, body > td {margin: 8px !important}
 }
 
 #columns {
-  background: #141;
+  background: #4caf50;
   display: flex;
 
   #main {
@@ -58,8 +58,28 @@ body, body > p, body > ol, body > ul, body > td {margin: 8px !important}
   }
 
   #side {
+    min-width: 170px;
     padding: 1em 2em;
-    background: #9bcccc;
+    background: #4caf50;
+
+    form, div {
+      display: inline;
+    }
+
+    input {
+      font-size: small;
+    }
+
+    #cart {
+      font-size: smaller;
+      color: white;
+
+      table {
+        border-top: 1px dotted #595;
+        border-bottom: 1px dotted #595;
+        margin-bottom: 10px;
+      }
+    }
 
     ul {
       padding: 0;
